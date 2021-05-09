@@ -18,6 +18,39 @@ let phrases = [
 
 //Listener to Start Game-- hide overlay start screen
 
-btnReset.addEventListener("click", () => {
+btnReset.addEventListener('click', () => {
     startGame.style.display = 'none';
 });
+
+//Using math.floor to randomize the index of phrase array
+const getRandomPhrase = arr => {
+    let indexPhrase = Math.floor(Math.random() * arr.length);
+    let randomPhrase = arr[indexPhrase].split('');
+    return randomPhrase;
+}
+
+//Calling function
+getRandomPhrase(phrases)
+
+//const to add the phrase, visible on screen
+const addPhraseToDisplay = arr => {
+    for(let i = 0; i < arr.length; i++ ) {
+        let phrase = document.querySelector('#phrase ul');
+        let li = document.createElement('li');
+        li.textContent = arr[i];
+        phrase.appendChild(li);
+        if (arr[i] === ' '){
+            li.classList.add('space');
+        } else {
+            li.classList.add('letter');
+        }
+    }
+} 
+
+//call function to display 
+addPhraseToDisplay(getRandomPhrase(phrases))
+
+
+
+
+
