@@ -30,7 +30,7 @@ const getRandomPhrase = arr => {
 }
 
 //Calling function
-getRandomPhrase(phrases)
+const randomPhrase = getRandomPhrase(phrases)
 
 //const to add the phrase, visible on screen
 const addPhraseToDisplay = arr => {
@@ -47,9 +47,17 @@ const addPhraseToDisplay = arr => {
     }
 } 
 
-//call function to display 
-addPhraseToDisplay(getRandomPhrase(phrases))
+//call function to display hidden phrase on display
+addPhraseToDisplay(randomPhrase)
 
+//Calling a function to check the letters
+const checkedLetter = button => {
+    const letter = document.querySelectorAll('.letter');
+    let match = 'null';
+    for() {
+
+    }
+}
 
 
 
