@@ -34,7 +34,7 @@ const getRandomPhrase = arr => {
 //Calling function
 const randomPhrase = getRandomPhrase(phrases)
 
-//const to add the phrase, visible on screen
+//Const to add the phrase, visible on screen
 const addPhraseToDisplay = arr => {
     for(let i = 0; i < arr.length; i++ ) {
         let phrase = document.querySelector('#phrase ul');
@@ -54,7 +54,7 @@ addPhraseToDisplay(randomPhrase)
 
 //Calling a function to check the letters
 const checkedLetter = (button) => {
-    let match = 'null';
+    let matched = null;
     for( let i = 0; i < letter.length; i++ ) {
         if( button === letter[i].textContent.toLowerCase()) {
             letters[i].classList.add('show');
@@ -62,7 +62,22 @@ const checkedLetter = (button) => {
         }
     }
     return matched;
-} 
+};
+
+// Event Listener for Onscreen Keyboard
+
+qwerty.addEventListener('click', e => {
+    if (e.target.tagName === 'BUTTON') {
+        e.target.className = 'chosen';
+        e.target.disabled = true;
+        const selected = checkedLetter(e.target.textContent.toLowerCase());
+        if (selected === null) {
+            missed++;
+            let img = document.querySelector('#scoreboard ol img');
+            img.remove();
+        }
+    }  
+});
 
 
 
