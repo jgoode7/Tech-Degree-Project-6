@@ -68,7 +68,7 @@ const checkedLetter = (button) => {
 
 qwerty.addEventListener('click', e => {
     if (e.target.tagName === 'BUTTON') {
-        e.target.className = 'chosen';
+        e.target.className = '.chosen';
         e.target.disabled = true;
         const selected = checkedLetter(e.target.textContent.toLowerCase());
         if (selected === null) {
