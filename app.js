@@ -1,25 +1,26 @@
 //Const and other variables
-const qwerty = document.getElementById('#qwerty');
+const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const btnReset = document.querySelector('.btn__reset');
 const startGame = document.querySelector('#overlay');
-const letter = document.querySelectorAll('.letter');
 
+const show = document.querySelectorAll('.show');
+const title = document.querySelector('.title');
+const letterLi = phrase.getElementsByTagName('li');
 
 //Variable for wrong answers
 let missed = 0;
 
 //Array for phrases
 let phrases = [
-    'What do you say Billy Ray',
-    'All good in the hood',
-    'Whaddayat',
-    'Oh right on hey?',
-    'Were you born in a barn?'
+    'what do you say billy ray',
+    'all good in the hood',
+    'whaddayat',
+    'oh right on hey',
+    'were you born in a barn'
 ];
 
 //Listener to Start Game-- hide overlay start screen
-
 btnReset.addEventListener('click', () => {
     startGame.style.display = 'none';
 });
@@ -37,10 +38,10 @@ const randomPhrase = getRandomPhrase(phrases)
 //Const to add the phrase, visible on screen
 const addPhraseToDisplay = arr => {
     for(let i = 0; i < arr.length; i++ ) {
-        let phrase = document.querySelector('#phrase ul');
+        let phraseUl = document.querySelector('#phrase ul');
         let li = document.createElement('li');
         li.textContent = arr[i];
-        phrase.appendChild(li);
+        phraseUl.appendChild(li);
         if (arr[i] === ' '){
             li.classList.add('space');
         } else {
@@ -53,15 +54,16 @@ const addPhraseToDisplay = arr => {
 addPhraseToDisplay(randomPhrase)
 
 //Calling a function to check the letters
-const checkedLetter = (button) => {
-    let matched = null;
-    for( let i = 0; i < letter.length; i++ ) {
-        if( button === letter[i].textContent.toLowerCase()) {
-            letter[i].classList.add('show');
-            matched = true;
+const checkedLetter = button => {
+    let match = null;
+    for( let i = 0; i < letterLi.length; i++ ) {
+        if (button === letterLi[i].textContent) {
+            letterLi[i].classList.add('show');
+            match = true;
         }
     }
-    return matched;
+    return match;
+
 };
 
 // Event Listener for Onscreen Keyboard
@@ -76,8 +78,24 @@ qwerty.addEventListener('click', e => {
             let img = document.querySelector('#scoreboard ol img');
             img.remove();
         }
+        checkWin();
     }  
 });
+
+//Const to check if player wins
+const checkWin = () => {
+    const letter = document.querySelectorAll('.letter');
+    if (letterLi.length === show.length) {
+        overlay.className = 'win';
+        title.textContent = 'Winner!!!'
+        overlay.style.display = 'flex';
+    }else if (missed > 4) {
+        overlay.className = 'lose';
+        title.textContent = "I'm sorry, you're out of lives. Try Again!";
+        overlay.style.display = 'flex';
+    }
+};    
+
 
 
 
