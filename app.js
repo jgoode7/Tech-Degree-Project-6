@@ -4,7 +4,7 @@ const phrase = document.getElementById('phrase');
 const btnReset = document.querySelector('.btn__reset');
 const startGame = document.querySelector('#overlay');
 
-const show = document.querySelectorAll('.show');
+
 const title = document.querySelector('.title');
 const phraseLi = phrase.getElementsByTagName('li');
 
@@ -85,6 +85,7 @@ qwerty.addEventListener('click', e => {
 //Const to check if player wins
 const checkWin = () => {
     const letter = document.querySelectorAll('.letter');
+    const show = document.querySelectorAll('.show');
     if (letter.length === show.length) {
         overlay.className = 'win';
         title.textContent = 'Winner!!!'
