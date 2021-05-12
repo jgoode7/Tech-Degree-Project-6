@@ -3,6 +3,8 @@ const qwerty = document.getElementById('#qwerty');
 const phrase = document.getElementById('phrase');
 const btnReset = document.querySelector('.btn__reset');
 const startGame = document.querySelector('#overlay');
+const letter = document.querySelectorAll('.letter');
+
 
 //Variable for wrong answers
 let missed = 0;
@@ -25,8 +27,8 @@ btnReset.addEventListener('click', () => {
 //Using math.floor to randomize the index of phrase array
 const getRandomPhrase = arr => {
     let indexPhrase = Math.floor(Math.random() * arr.length);
-    let randomPhrase = arr[indexPhrase].split('');
-    return randomPhrase;
+    let splitPhrase = arr[indexPhrase].split('');
+    return splitPhrase;
 }
 
 //Calling function
@@ -51,13 +53,16 @@ const addPhraseToDisplay = arr => {
 addPhraseToDisplay(randomPhrase)
 
 //Calling a function to check the letters
-const checkedLetter = button => {
-    const letter = document.querySelectorAll('.letter');
+const checkedLetter = (button) => {
     let match = 'null';
-    for() {
-
+    for( let i = 0; i < letter.length; i++ ) {
+        if( button === letter[i].textContent.toLowerCase()) {
+            letters[i].classList.add('show');
+            matched = true;
+        }
     }
-}
+    return matched;
+} 
 
 
 
