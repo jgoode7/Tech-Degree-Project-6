@@ -6,7 +6,7 @@ const startGame = document.querySelector('#overlay');
 
 const show = document.querySelectorAll('.show');
 const title = document.querySelector('.title');
-const letterLi = phrase.getElementsByTagName('li');
+const phraseLi = phrase.getElementsByTagName('li');
 
 //Variable for wrong answers
 let missed = 0;
@@ -56,9 +56,9 @@ addPhraseToDisplay(randomPhrase)
 //Calling a function to check the letters
 const checkedLetter = button => {
     let match = null;
-    for( let i = 0; i < letterLi.length; i++ ) {
-        if (button === letterLi[i].textContent) {
-            letterLi[i].classList.add('show');
+    for( let i = 0; i < phraseLi.length; i++ ) {
+        if (button === phraseLi[i].textContent) {
+            phraseLi[i].classList.add('show');
             match = true;
         }
     }
@@ -85,7 +85,7 @@ qwerty.addEventListener('click', e => {
 //Const to check if player wins
 const checkWin = () => {
     const letter = document.querySelectorAll('.letter');
-    if (letterLi.length === show.length) {
+    if (letter.length === show.length) {
         overlay.className = 'win';
         title.textContent = 'Winner!!!'
         overlay.style.display = 'flex';
