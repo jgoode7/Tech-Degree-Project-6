@@ -3,15 +3,13 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const btnReset = document.querySelector('.btn__reset');
 const startGame = document.querySelector('#overlay');
-
-
 const title = document.querySelector('.title');
 const phraseLi = phrase.getElementsByTagName('li');
 
 //Variable for wrong answers
 let missed = 0;
 
-//Array for phrases
+//Array for phrases (Canadian Version)
 let phrases = [
     'what do you say billy ray',
     'all good in the hood',
@@ -46,6 +44,7 @@ const addPhraseToDisplay = arr => {
             li.classList.add('space');
         } else {
             li.classList.add('letter');
+            li.style.transition = 'all, 1.2s';
         }
     }
 } 
@@ -67,7 +66,6 @@ const checkedLetter = button => {
 };
 
 // Event Listener for Onscreen Keyboard
-
 qwerty.addEventListener('click', e => {
     if (e.target.tagName === 'BUTTON') {
         e.target.className = 'chosen';
@@ -92,12 +90,15 @@ const checkWin = () => {
         overlay.style.display = 'flex';
     }else if (missed > 4) {
         overlay.className = 'lose';
-        title.textContent = "I'm sorry, you're out of lives. Try Again!";
+        title.textContent = "I'm sorry, you're out of lives!";
         overlay.style.display = 'flex';
     }
+    reset();
 };    
 
-
-
-
-
+const reset = () => {
+    btnReset.textContent = 'Play Again?';
+    btnReset.addEventListener('click', () => {
+        location.reload();
+    });
+}
